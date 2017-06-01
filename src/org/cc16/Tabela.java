@@ -1,30 +1,47 @@
 package org.cc16;
 
+import java.awt.BorderLayout;
+
 /**
  * Created by jonathan on 5/24/17.
  */
 
 import java.util.ArrayList;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import java.awt.Container;
+import java.util.Enumeration;
+
+import javax.swing.*;
+import javax.swing.event.TableColumnModelListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel; 
 
 
-public class Tabela {
-    private String titulo;
+public class Tabela extends JTable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String titulo = "Tabela1";
     private ArrayList<ListaEncadeada> linhas;
     private ArrayList<String> cabecalho;
-
-    public Tabela(JFrame frm){
-    	JOptionPane.showMessageDialog(frm, "Iniciando criação de tabela");
-    	int numerolinhas = Integer.parseInt(JOptionPane.showInputDialog(frm, "Insere número de linhas:"));
-    	int numerocolunas = Integer.parseInt(JOptionPane.showInputDialog(frm, "Insere número de colunas:"));
-    	JTable table = new JTable(numerolinhas, numerocolunas);	
-    	Container contain_table = new Container();
-    	contain_table.add(table);
-    	frm.add(contain_table);
+    private JScrollPane tabela_scroll;
+    
+    public Tabela(int numlinhas, int numcolunas, String[] colunas, Object[][] info){    	
+    	super(new DefaultTableModel(info, colunas));
+    	JScrollPane tabela_scroll = new JScrollPane();
+    	tabela_scroll.setViewportView(this);
+    	this.tabela_scroll = tabela_scroll; 
     	
+    }
+    public JScrollPane getScrollPane(){
+    	return this.tabela_scroll;
+    }
+    
+    public String getTitulo(){
+    	return this.titulo;
+    }
+    
+    public void gravarDados(int[][] info){
     	
     }
 
