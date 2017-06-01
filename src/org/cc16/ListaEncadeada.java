@@ -12,9 +12,6 @@ public class ListaEncadeada {
 		return valor;
 	}
 	
-	public int comprimento(){
-		return length;
-	}
 
 	public ListaEncadeada consultaIndice(int ind){
 		ListaEncadeada lista = this;

@@ -1,11 +1,17 @@
 package org.cc16;
 
-import java.util.JFrame;
+import javax.swing.JFrame;
 
 public class MenuPrincipal {
 
-    public static final main(String args[]) {
-        private JFrame window = new JFrame("Projeto InterDisciplinar");
+    public static void main(String args[]) {
+        JFrame frm = new JFrame("Projeto InterDisciplinar");
+        frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
+        frm.setSize(500, 1000);
+        frm.setVisible(true);
+        Tabela tab = new Tabela(frm);
+        
+      
 
     }
 }
