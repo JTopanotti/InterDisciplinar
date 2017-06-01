@@ -1,11 +1,13 @@
+package org.cc16;
+
 
 public class ListaEncadeada {
 	private int valor;
 	private ListaEncadeada prox;
 	private ListaEncadeada ant;
-	private int indice;
-	private static int length;
-	
+	private int indice = 0;
+	private int sum = 0;
+
 	public int getValor(){
 		return valor;
 	}
@@ -13,7 +15,7 @@ public class ListaEncadeada {
 	public int comprimento(){
 		return length;
 	}
-	
+
 	public ListaEncadeada consultaIndice(int ind){
 		ListaEncadeada lista = this;
 		while(lista != null ){
@@ -31,6 +33,18 @@ public class ListaEncadeada {
 			lista = lista.prox;
 		}
 	}
+
+	private ListaEncadeada getUltimoNo(){
+		ListaEncadeada lista = this;
+		while(lista.prox != null){
+			lista = lista.prox;
+		}
+		return lista;
+	}
+
+	public int getSomatorio(){
+		return this.getUltimoNo().sum;
+	}
 	
 	public void criarNo(int valor){
 		ListaEncadeada lista = this;
@@ -39,24 +53,15 @@ public class ListaEncadeada {
 		}
 		lista.prox = new ListaEncadeada(valor);
 		lista.prox.ant = lista;
-		System.out.println(lista);
-		System.out.println(lista.prox);
-		System.out.println(lista.prox.ant);
-		System.out.println(lista.prox.prox);
+		lista.prox.indice = lista.indice + 1;
+		lista.prox.sum += lista.sum;
 	}
 	
 	public ListaEncadeada(int valor){ 		
 		this.valor = valor;
 		this.prox = null;
 		this.ant = null;
-		this.indice = length;
-		ListaEncadeada.length++;
-	}
-	
-	public ListaEncadeada(int valor, ListaEncadeada lista){ 		
-		lista.prox = new ListaEncadeada(valor);
-		this.ant = lista;
-		this.indice = length;
-		ListaEncadeada.length++;		
+		this.sum = valor;
+
 	}
 }

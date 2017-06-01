@@ -5,12 +5,18 @@ package org.cc16;
  */
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.
 
 public class Tabela {
     private String titulo;
-    private ArrayList<LinkedList<Integer>> linhas;
+    private ArrayList<ListaEncadeada> linhas;
     private ArrayList<String> cabecalho;
 
+    public Tabela(){
 
+    }
+
+    public getSomatorioLinha(int linha){
+        linhas[linha].getSomatorio();
+    }
 }
