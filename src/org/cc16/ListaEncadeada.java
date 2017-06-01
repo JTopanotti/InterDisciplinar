@@ -3,8 +3,8 @@ package org.cc16;
 
 public class ListaEncadeada {
 	private int valor;
-	private ListaEncadeada prox;
-	private ListaEncadeada ant;
+	private ListaEncadeada prox = null;
+	private ListaEncadeada ant = null;
 	private int indice = 0;
 	private int sum = 0;
 

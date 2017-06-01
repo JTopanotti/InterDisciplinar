@@ -14,7 +14,15 @@ public class GravarDados implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		Integer[][] dados = new Integer[tab.getRowCount()][tab.getColumnCount() - 1];
+		for(int i = 0; i < tab.getRowCount(); i++){
+			for(int j = 1; j < tab.getColumnCount(); j++){
+				dados[i][j] = (Integer) tab.getValueAt(i, j);
+				System.out.print(dados[i][j] + ' ');
+			}
+			System.out.println();
+		}
 	}
+	
 	
 }

@@ -37,6 +37,10 @@ public class Tabela extends JTable {
     	return this.tabela_scroll;
     }
     
+    public ListaEncadeada getLista(int indice){
+    	return linhas.get(indice);
+    }
+    
     public String getTitulo(){
     	return this.titulo;
     }

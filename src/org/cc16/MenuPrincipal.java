@@ -34,14 +34,8 @@ public class MenuPrincipal {
         frm.add(tab.getScrollPane(), BorderLayout.CENTER);        
         frm.pack();
         
-        System.out.println(frm.getComponents()[0].);
-        
-        for(int i = 0; i < frm.getComponentCount(); i++){
-        	System.out.println(frm.getComponents()[i]);
-        }
-        
         JButton gravar = new JButton("Gravar");
-        GravarDados gravar_action = new GravarDados(frm);
+        GravarDados gravar_action = new GravarDados(tab);
         gravar.addActionListener(gravar_action);
         frm.add(gravar, BorderLayout.SOUTH);
         frm.pack();
