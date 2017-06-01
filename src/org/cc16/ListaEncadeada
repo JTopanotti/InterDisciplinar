@@ -16,12 +16,20 @@ public class ListaEncadeada {
 	
 	public ListaEncadeada consultaIndice(int ind){
 		ListaEncadeada lista = this;
-		while(lista.prox != null ){
+		while(lista != null ){
 			if(lista.indice == ind)
 				return lista;
 			lista = lista.prox;
 		}
 		return null;
+	}
+	
+	public void consultarLista(){
+		ListaEncadeada lista = this;
+		while(lista != null){
+			System.out.println("Indice: " + lista.indice + " | Valor: " + lista.valor);
+			lista = lista.prox;
+		}
 	}
 	
 	public void criarNo(int valor){
@@ -31,6 +39,10 @@ public class ListaEncadeada {
 		}
 		lista.prox = new ListaEncadeada(valor);
 		lista.prox.ant = lista;
+		System.out.println(lista);
+		System.out.println(lista.prox);
+		System.out.println(lista.prox.ant);
+		System.out.println(lista.prox.prox);
 	}
 	
 	public ListaEncadeada(int valor){ 		
@@ -47,5 +59,4 @@ public class ListaEncadeada {
 		this.indice = length;
 		ListaEncadeada.length++;		
 	}
-	
 }
