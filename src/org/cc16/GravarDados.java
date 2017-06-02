@@ -16,11 +16,10 @@ public class GravarDados implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Integer[][] dados = new Integer[tab.getRowCount()][tab.getColumnCount() - 1];
 		for(int i = 0; i < tab.getRowCount(); i++){
-			for(int j = 1; j < tab.getColumnCount(); j++){
-				dados[i][j] = (Integer) tab.getValueAt(i, j);
-				System.out.print(dados[i][j] + ' ');
+			for(int j = 1; j < tab.getColumnCount() - 1; j++){
+				dados[i][j] = Integer.parseInt(tab.getValueAt(i, j).toString());
+				tab.gravarDados(dados);
 			}
-			System.out.println();
 		}
 	}
 	

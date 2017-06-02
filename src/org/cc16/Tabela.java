@@ -45,7 +45,7 @@ public class Tabela extends JTable {
     	return this.titulo;
     }
     
-    public void gravarDados(int[][] info){
+    public void gravarDados(Integer[][] info){
     	
     }
 
