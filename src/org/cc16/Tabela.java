@@ -1,19 +1,12 @@
 package org.cc16;
 
-import java.awt.BorderLayout;
 
 /**
  * Created by jonathan on 5/24/17.
  */
 
-import java.util.ArrayList;
-import java.util.Enumeration;
-
 import javax.swing.*;
-import javax.swing.event.TableColumnModelListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel; 
 
 
 public class Tabela extends JTable {
@@ -22,13 +15,19 @@ public class Tabela extends JTable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String titulo = "Tabela1";
-    private ArrayList<ListaEncadeada> linhas;
-    private ArrayList<String> cabecalho;
+    private ListaEncadeada[] linhas;
     private JScrollPane tabela_scroll;
+    private String[] titulo_linhas;
     
-    public Tabela(int numlinhas, int numcolunas, String[] colunas, Object[][] info){    	
+    public Tabela(int numlinhas, int numcolunas, String[] colunas, Object[][] info, String[] linhas){    	
     	super(new DefaultTableModel(info, colunas));
     	JScrollPane tabela_scroll = new JScrollPane();
+    	this.titulo_linhas = linhas;
+    	
+    	for(int i = 0; i < numlinhas; i++){
+    		this.setValueAt(linhas[i], i, 0);
+    	}
+    	
     	tabela_scroll.setViewportView(this);
     	this.tabela_scroll = tabela_scroll; 
     	
@@ -38,7 +37,7 @@ public class Tabela extends JTable {
     }
     
     public ListaEncadeada getLista(int indice){
-    	return linhas.get(indice);
+    	return linhas[indice];
     }
     
     public String getTitulo(){
@@ -46,7 +45,16 @@ public class Tabela extends JTable {
     }
     
     public void gravarDados(Integer[][] info){
-    	
+    	this.linhas = new ListaEncadeada[info.length];
+    	for(int i = 0; i < info.length; i++){
+    		for(int j = 1; j < info[i].length; j++){
+    			if( j == 1 )
+    				linhas[i] = new ListaEncadeada(info[i][j]);
+    			else
+    				linhas[i].criarNo(info[i][j]);
+    			
+    		}
+    	}
     }
 
   
