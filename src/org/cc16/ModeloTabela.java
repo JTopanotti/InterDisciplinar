@@ -4,6 +4,10 @@ import javax.swing.table.AbstractTableModel;
 
 public class ModeloTabela extends AbstractTableModel{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String[] colunas;
     private Object[][] informacao;
 
@@ -15,20 +19,17 @@ public class ModeloTabela extends AbstractTableModel{
 	
 	@Override
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return colunas.length;
 	}
 
 	@Override
 	public int getRowCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return informacao.length;
 	}
 
 	@Override
 	public Object getValueAt(int arg0, int arg1) {
-		// TODO Auto-generated method stub
-		return null;
+		return informacao[arg0][arg1];
 	}
 
 }

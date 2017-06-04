@@ -9,20 +9,22 @@ public class MenuPrincipal {
 	private static Tabela criarTabela(JFrame frm){
     	
     	JOptionPane.showMessageDialog(frm, "Iniciando criação de tabela");
-    	int numlinhas = Integer.parseInt(JOptionPane.showInputDialog(frm, "Insere número de linhas:"));
-    	int numcolunas = Integer.parseInt(JOptionPane.showInputDialog(frm, "Insere número de colunas:"));
+    	int numlinhas = Integer.parseInt(JOptionPane.showInputDialog(frm, "Insere número de linhas:")) + 1;
+    	int numcolunas = Integer.parseInt(JOptionPane.showInputDialog(frm, "Insere número de colunas:")) + 2;
     	
     	String[] linhas = new String[numlinhas];
-    	String[] colunas = new String[numcolunas + 1];
-	    colunas[0] = "i";
-    	Object[][] info = new Object[numlinhas][numcolunas + 1];
+    	String[] colunas = new String[numcolunas];
+    	Object[][] info = new Object[numlinhas][numcolunas];
     	
-    	for(int i = 1; i <= numcolunas; i++){
+    	for(int i = 1; i < numcolunas - 1; i++){
     		colunas[i] = JOptionPane.showInputDialog(frm, "Digite o nome da coluna " + (i) + ':');
     	}
-    	for(int i = 0; i < numlinhas; i++){
-    		linhas[i] = JOptionPane.showInputDialog(frm, "Digite o nome da linhas " + (i+1) + ":");
+    	for(int i = 0; i < numlinhas - 1; i++){
+    		linhas[i] = JOptionPane.showInputDialog(frm, "Digite o nome da linha " + (i+1) + ":");
     	}
+	    colunas[0] = "";
+    	linhas[numlinhas - 1] = "∑";
+	    colunas[numcolunas - 1] = "∑";
         Tabela tab = new Tabela(numlinhas,
         		                numcolunas,
         		                colunas,
@@ -36,7 +38,7 @@ public class MenuPrincipal {
         frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
         frm.setVisible(true);
         Tabela tab = criarTabela(frm);
-        frm.add(tab.getScrollPane(), BorderLayout.EAST);        
+        frm.add(tab.getScrollPane(), BorderLayout.WEST);        
         frm.pack();
         
         JButton gravar = new JButton("Gravar");
@@ -44,8 +46,8 @@ public class MenuPrincipal {
         gravar.addActionListener(gravar_action);
         frm.add(gravar, BorderLayout.SOUTH);
         frm.pack();
+        	
         
-
         
       
 

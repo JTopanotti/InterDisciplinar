@@ -9,6 +9,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 
+
+
 public class Tabela extends JTable {
     /**
 	 * 
@@ -21,14 +23,14 @@ public class Tabela extends JTable {
     
     public Tabela(int numlinhas, int numcolunas, String[] colunas, Object[][] info, String[] linhas){    	
     	super(new DefaultTableModel(info, colunas));
-    	JScrollPane tabela_scroll = new JScrollPane();
+    	JScrollPane tabela_scroll = new JScrollPane(this);
     	this.titulo_linhas = linhas;
     	
     	for(int i = 0; i < numlinhas; i++){
     		this.setValueAt(linhas[i], i, 0);
     	}
     	
-    	tabela_scroll.setViewportView(this);
+    	//tabela_scroll.setViewportView(this);
     	this.tabela_scroll = tabela_scroll; 
     	
     }
@@ -46,7 +48,7 @@ public class Tabela extends JTable {
     
     public void gravarDados(Integer[][] info){
     	this.linhas = new ListaEncadeada[info.length];
-    	for(int i = 0; i < info.length; i++){
+    	for(int i = 0; i < info.length ; i++){
     		for(int j = 1; j < info[i].length; j++){
     			if( j == 1 )
     				linhas[i] = new ListaEncadeada(info[i][j]);
@@ -54,6 +56,9 @@ public class Tabela extends JTable {
     				linhas[i].criarNo(info[i][j]);
     			
     		}
+    	}
+    	for(int i = 0; i < linhas.length; i++){
+    		linhas[i].consultarLista();
     	}
     }
 
