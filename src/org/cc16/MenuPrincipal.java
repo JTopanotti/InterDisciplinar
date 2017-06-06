@@ -1,5 +1,7 @@
 package org.cc16;
 
+//http://commons.apache.org/proper/commons-math/javadocs/api-3.3/org/apache/commons/math3/stat/inference/ChiSquareTest.html
+
 import java.awt.BorderLayout;
 
 import javax.swing.*;
