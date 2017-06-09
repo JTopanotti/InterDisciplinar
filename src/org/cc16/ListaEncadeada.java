@@ -22,7 +22,18 @@ public class ListaEncadeada {
 		}
 		return null;
 	}
-	
+
+	public int getQuantidadeNos(){
+	    ListaEncadeada lista = this;
+	    int n = 0;
+	    while(lista != null){
+	        n++;
+	        lista = lista.prox;
+        }
+        return n;
+    }
+
+
 	public void consultarLista(){
 		ListaEncadeada lista = this;
 		while(lista != null){

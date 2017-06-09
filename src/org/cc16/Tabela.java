@@ -20,6 +20,7 @@ public class Tabela extends JTable {
     private ListaEncadeada[] linhas;
     private JScrollPane tabela_scroll;
     private String[] titulo_linhas;
+    private int[] somatorio_colunas;
     
     public Tabela(int numlinhas, int numcolunas, String[] colunas, Object[][] info, String[] linhas){    	
     	super(new DefaultTableModel(info, colunas));
@@ -60,6 +61,43 @@ public class Tabela extends JTable {
     	for(int i = 0; i < linhas.length; i++){
     		linhas[i].consultarLista();
     	}
+    }
+
+    public int getSomatorioColuna(int indice){
+        return this.somatorio_colunas[indice];
+    }
+
+    public void somaColunas(){
+        this.somatorio_colunas = new int[linhas[0].getQuantidadeNos()];
+        for(int i = 0; i < linhas[0].getQuantidadeNos(); i++){
+            somatorio_colunas[i] = 0;
+            for(int j = 0; j < linhas.length; j++){
+                somatorio_colunas[i] += linhas[j].consultaIndice(i).getValor();
+            }
+        }
+    }
+
+    public int getSomatorioGeral(){
+        int sum = 0;
+        somatorio_colunas = new int[linhas[0].getQuantidadeNos()];
+        somaColunas();
+        for(int i = 0; i < linhas.length; i++){
+            sum += linhas[0].getSomatorio();
+        }
+        for(int i = 0; i < somatorio_colunas.length; i++){
+            sum += somatorio_colunas[i];
+        }
+        return sum;
+    }
+
+    public int[][] calcularValorEsperado(JFrame frm){
+        int[][] matriz_esperado = new int[linhas.length][linhas[0].getQuantidadeNos()];
+        for(int i = 0; i < linhas.length; i++ ){
+            for(int j = 0; j < linhas[i].getQuantidadeNos(); j++){
+                matriz_esperado[i][j] = (linhas[i].getSomatorio() * getSomatorioColuna(j)) / getSomatorioGeral() ;
+            }
+        }
+        return matriz_esperado;
     }
 
   

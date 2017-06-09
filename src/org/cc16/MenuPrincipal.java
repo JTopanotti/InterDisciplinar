@@ -48,6 +48,9 @@ public class MenuPrincipal {
         gravar.addActionListener(gravar_action);
         frm.add(gravar, BorderLayout.SOUTH);
         frm.pack();
+
+
+
         	
         
         
