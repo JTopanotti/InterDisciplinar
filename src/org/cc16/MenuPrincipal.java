@@ -36,7 +36,7 @@ public class MenuPrincipal {
 	}
 
     public static void main(String args[]) {
-        JFrame frm = new JFrame("Projeto InterDisciplinar");
+       /* JFrame frm = new JFrame("Projeto InterDisciplinar");
         frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
         frm.setVisible(true);
         Tabela tab = criarTabela(frm);
@@ -47,12 +47,11 @@ public class MenuPrincipal {
         GravarDados gravar_action = new GravarDados(tab);
         gravar.addActionListener(gravar_action);
         frm.add(gravar, BorderLayout.SOUTH);
-        frm.pack();
-
-
-
-        	
+        frm.pack();/*
+        */      	
         
+       FInicial telaPrincipal = new FInicial();
+       telaPrincipal.show();
         
       
 
