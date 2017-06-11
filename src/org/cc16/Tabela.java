@@ -12,39 +12,29 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class Tabela extends JTable {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private String titulo = "Tabela1";
+    
+    private static final long serialVersionUID = 1L;
     private ListaEncadeada[] linhas;
-    private JScrollPane tabela_scroll;
     private String[] titulo_linhas;
     private int[] somatorio_colunas;
     
-    public Tabela(int numlinhas, int numcolunas, String[] colunas, Object[][] info, String[] linhas){    	
-    	super(new DefaultTableModel(info, colunas));
+    
+    public Tabela(int numlinhas, int numcolunas, String[] nomeLinhas, String[] nomeColunas){    	
+    	//super(new ModeloTabela(nomeColunas, new Object[numlinhas][numcolunas]));
+        super(new DefaultTableModel(nomeColunas, numlinhas));
+        System.out.println("1");
     	JScrollPane tabela_scroll = new JScrollPane(this);
-    	this.titulo_linhas = linhas;
+    	this.titulo_linhas = nomeLinhas;
+    	System.out.println("2");
+//    	for(int i = 0; i < numlinhas; i++){
+//    		this.setValueAt(linhas[i], i, 0);
+//    	}
     	
-    	for(int i = 0; i < numlinhas; i++){
-    		this.setValueAt(linhas[i], i, 0);
-    	}
-    	
-    	//tabela_scroll.setViewportView(this);
-    	this.tabela_scroll = tabela_scroll; 
-    	
-    }
-    public JScrollPane getScrollPane(){
-    	return this.tabela_scroll;
     }
     
+  
     public ListaEncadeada getLista(int indice){
     	return linhas[indice];
-    }
-    
-    public String getTitulo(){
-    	return this.titulo;
     }
     
     public void gravarDados(Integer[][] info){

@@ -300,6 +300,11 @@ public class FInformaLinhaColuna extends javax.swing.JFrame {
             }
         }
         
+        FPrincipal principal = new FPrincipal(numeroLinhas, numeroColunas, nomeLinhas, nomeColunas);        
+        principal.show();
+        
+        this.hide();
+        
         // DEPOIS QUE GERAR A TABELA TEM QUE CRIAR UMA NOVA TELA PRA INFORMAR OS DADOS DE CADA CÉLULA, NO CASO VAI SER A TELA PRINCIPAL
     }
     
