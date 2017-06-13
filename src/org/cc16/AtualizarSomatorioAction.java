@@ -61,6 +61,9 @@ public class AtualizarSomatorioAction implements Action {
         tabela.setSomatorioLinha(linha, valorAnt, valorPost);
         tabela.setSomatorioColuna(coluna, valorAnt, valorPost);
         tabela.setSomatorioTotal(valorAnt, valorPost);
+        tabela.setValorNo(valorPost, linha, coluna);
+        tabela.getLinha(0).consultarLista();
+        tabela.getLinha(1).consultarLista();
     }
     
 }

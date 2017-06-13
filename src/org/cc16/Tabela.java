@@ -34,7 +34,7 @@ public class Tabela extends JTable   {
     	for(int i = 0; i < numLinhas; i++){
     		this.setValueAt(nomeLinhas[i], i, 0);
     	}
-        iniciaSomatorios();
+        iniciaDados();
         editarSomatorio = new AtualizarSomatorioAction();
         this.celulaListener = new TableCellListener(this, editarSomatorio);
     }
@@ -45,12 +45,23 @@ public class Tabela extends JTable   {
     	return dados[indice];
     }
     
-    private void iniciaSomatorios(){
+    public void setValorNo(int valor, int linha, int coluna){
+        dados[linha].consultaIndice(coluna).setValor(valor);
+    }
+    
+    private void iniciaDados(){
+        dados = new ListaEncadeada[numLinhas];
         for(int i = 0; i < numLinhas; i++){
             if(somatorio_linhas == null)
                 somatorio_linhas = new ListaEncadeada(0);
             else
                 somatorio_linhas.criarNo(0);
+            for(int j = 0; j < numColunas; j++){
+                if(dados[i] == null)
+                    dados[i] = new ListaEncadeada(0);
+                else
+                    dados[i].criarNo(0);
+            }
         }
         for(int i = 0; i < numColunas; i++){
             if(somatorio_colunas == null)
