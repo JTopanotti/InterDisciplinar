@@ -1,5 +1,11 @@
 .idea/
 *.iml
 bin/
+<<<<<<< HEAD
 
 /nbproject/private/
+=======
+out/
+/nbproject/private/
+/build/
+>>>>>>> eac48a937bc7c34a8debb1b6de8b3da28ed85106

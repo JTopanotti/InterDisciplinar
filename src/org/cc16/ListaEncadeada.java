@@ -11,7 +11,9 @@ public class ListaEncadeada {
 	public int getValor(){
 		return valor;
 	}
-	
+	public void setValor(int valor){
+            this.valor = valor;
+        }
 
 	public ListaEncadeada consultaIndice(int ind){
 		ListaEncadeada lista = this;

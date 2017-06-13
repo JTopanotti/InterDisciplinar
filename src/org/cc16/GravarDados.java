@@ -22,11 +22,6 @@ public class GravarDados implements ActionListener {
 			}
 		}
 		tab.gravarDados(dados);
-
-		for(int i = 0; i < 3; i++ ) {
-			System.out.println(tab.getSomatorioColuna(i));
-		}
-		System.out.print(tab.getSomatorioGeral());
 	}
 	
 	

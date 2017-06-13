@@ -11,94 +11,114 @@ import javax.swing.table.DefaultTableModel;
 
 
 
-public class Tabela extends JTable {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private String titulo = "Tabela1";
-    private ListaEncadeada[] linhas;
-    private JScrollPane tabela_scroll;
+public class Tabela extends JTable   {
+    
+    private static final long serialVersionUID = 1L;
+    private int numLinhas;
+    private int numColunas;
+    private ListaEncadeada[] dados;
+    private ListaEncadeada somatorio_colunas;
+    private ListaEncadeada somatorio_linhas;
+    private int somatorio_total;
     private String[] titulo_linhas;
-    private int[] somatorio_colunas;
+    private TableCellListener celulaListener;
+    private Action editarSomatorio;
     
-    public Tabela(int numlinhas, int numcolunas, String[] colunas, Object[][] info, String[] linhas){    	
-    	super(new DefaultTableModel(info, colunas));
+    public Tabela(int numLinhas, int numColunas, String[] nomeLinhas, String[] nomeColunas){    	
+    	//super(new ModeloTabela(nomeColunas, new Object[numlinhas][numcolunas]));
+        super(new DefaultTableModel(nomeColunas, numLinhas));
+        this.numLinhas = numLinhas;
+        this.numColunas = numColunas;
     	JScrollPane tabela_scroll = new JScrollPane(this);
-    	this.titulo_linhas = linhas;
-    	
-    	for(int i = 0; i < numlinhas; i++){
-    		this.setValueAt(linhas[i], i, 0);
+    	this.titulo_linhas = nomeLinhas;
+    	for(int i = 0; i < numLinhas; i++){
+    		this.setValueAt(nomeLinhas[i], i, 0);
     	}
-    	
-    	//tabela_scroll.setViewportView(this);
-    	this.tabela_scroll = tabela_scroll; 
-    	
-    }
-    public JScrollPane getScrollPane(){
-    	return this.tabela_scroll;
+        iniciaDados();
+        editarSomatorio = new AtualizarSomatorioAction();
+        this.celulaListener = new TableCellListener(this, editarSomatorio);
     }
     
-    public ListaEncadeada getLista(int indice){
-    	return linhas[indice];
+    public double calcularEsperado(int linha, int coluna){
+        return (somatorio_linhas.consultaIndice(linha).getValor()
+                 + somatorio_colunas.consultaIndice(coluna).getValor()) / somatorio_total;
+    }
+  
+    public ListaEncadeada getLinha(int indice){
+    	return dados[indice];
     }
     
-    public String getTitulo(){
-    	return this.titulo;
+    public void setValorNo(int valor, int linha, int coluna){
+        dados[linha].consultaIndice(coluna).setValor(valor);
+    }
+    
+    private void iniciaDados(){
+        dados = new ListaEncadeada[numLinhas];
+        for(int i = 0; i < numLinhas; i++){
+            if(somatorio_linhas == null)
+                somatorio_linhas = new ListaEncadeada(0);
+            else
+                somatorio_linhas.criarNo(0);
+            for(int j = 0; j < numColunas; j++){
+                if(dados[i] == null)
+                    dados[i] = new ListaEncadeada(0);
+                else
+                    dados[i].criarNo(0);
+            }
+        }
+        for(int i = 0; i < numColunas; i++){
+            if(somatorio_colunas == null)
+                somatorio_colunas = new ListaEncadeada(0);
+            else
+                somatorio_colunas.criarNo(0);
+        }
+        somatorio_total = 0;
     }
     
     public void gravarDados(Integer[][] info){
-    	this.linhas = new ListaEncadeada[info.length];
+    	this.dados = new ListaEncadeada[info.length];
     	for(int i = 0; i < info.length ; i++){
     		for(int j = 1; j < info[i].length; j++){
     			if( j == 1 )
-    				linhas[i] = new ListaEncadeada(info[i][j]);
+    				dados[i] = new ListaEncadeada(info[i][j]);
     			else
-    				linhas[i].criarNo(info[i][j]);
+    				dados[i].criarNo(info[i][j]);
     			
     		}
     	}
-    	for(int i = 0; i < linhas.length; i++){
-    		linhas[i].consultarLista();
+    	for(int i = 0; i < dados.length; i++){
+    		dados[i].consultarLista();
     	}
     }
 
-    public int getSomatorioColuna(int indice){
-        return this.somatorio_colunas[indice];
+    public ListaEncadeada getSomatorioColunas(){
+        return this.somatorio_colunas;
     }
 
-    public void somaColunas(){
-        this.somatorio_colunas = new int[linhas[0].getQuantidadeNos()];
-        for(int i = 0; i < linhas[0].getQuantidadeNos(); i++){
-            somatorio_colunas[i] = 0;
-            for(int j = 0; j < linhas.length; j++){
-                somatorio_colunas[i] += linhas[j].consultaIndice(i).getValor();
-            }
-        }
+    public ListaEncadeada getSomatorioLinhas(){
+        return this.somatorio_linhas;
+    }
+    
+    public int getSomatorioTotal(){
+        return this.somatorio_total;
+    }
+    
+    public void setSomatorioColuna(int indice, int valorAnt, int valorPost){
+        int valor_no = somatorio_colunas.consultaIndice(indice).getValor();
+        valor_no = (valor_no - valorAnt) + valorPost;
+        somatorio_colunas.consultaIndice(indice).setValor(valor_no);
     }
 
-    public int getSomatorioGeral(){
-        int sum = 0;
-        somatorio_colunas = new int[linhas[0].getQuantidadeNos()];
-        somaColunas();
-        for(int i = 0; i < linhas.length; i++){
-            sum += linhas[0].getSomatorio();
-        }
-        for(int i = 0; i < somatorio_colunas.length; i++){
-            sum += somatorio_colunas[i];
-        }
-        return sum;
+    public void setSomatorioLinha(int indice, int valorAnt, int valorPost){
+        int valor_no = somatorio_linhas.consultaIndice(indice).getValor();
+        valor_no = (valor_no - valorAnt) + valorPost;
+        somatorio_linhas.consultaIndice(indice).setValor(valor_no);
     }
-
-    public int[][] calcularValorEsperado(JFrame frm){
-        int[][] matriz_esperado = new int[linhas.length][linhas[0].getQuantidadeNos()];
-        for(int i = 0; i < linhas.length; i++ ){
-            for(int j = 0; j < linhas[i].getQuantidadeNos(); j++){
-                matriz_esperado[i][j] = (linhas[i].getSomatorio() * getSomatorioColuna(j)) / getSomatorioGeral() ;
-            }
-        }
-        return matriz_esperado;
+    
+    public void setSomatorioTotal(int valorAnt, int valorPost){
+        somatorio_total = (somatorio_total - valorAnt) + valorPost;
     }
+    
 
   
 }
