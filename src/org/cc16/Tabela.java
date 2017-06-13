@@ -39,7 +39,10 @@ public class Tabela extends JTable   {
         this.celulaListener = new TableCellListener(this, editarSomatorio);
     }
     
-    
+    public double calcularEsperado(int linha, int coluna){
+        return (somatorio_linhas.consultaIndice(linha).getValor()
+                 + somatorio_colunas.consultaIndice(coluna).getValor()) / somatorio_total;
+    }
   
     public ListaEncadeada getLinha(int indice){
     	return dados[indice];

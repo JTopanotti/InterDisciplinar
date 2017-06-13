@@ -19,25 +19,42 @@ public class FPrincipal extends javax.swing.JFrame {
      */
     private final int numeroLinhas;
     private final int numeroColunas;
+    private final String[] nomeLinhas;
+    private final String[] nomeColunas;
+    private Tabela tabela_principal;
+    private Tabela tabela_esperados;
+    
         
     public FPrincipal(int numLinhas, int numColunas, String[] nomeLinhas, String[] nomeColunas) {
         initComponents();
         jScrollPane2.hide();
         numeroLinhas = numLinhas;
         numeroColunas = numColunas;
-        Tabela tabela_principal = criarTabela(nomeLinhas, nomeColunas);
+        this.nomeLinhas = nomeLinhas;
+        this.nomeColunas = nomeColunas;
+        tabela_principal = criarTabela();
         jScrollPane1.setViewportView(tabela_principal);
         
         
     }
     
-    private Tabela criarTabela(String[] nomesLinhas, String[] nomesColunas){
+    public void criarTabelaEsperados(){
+        tabela_esperados = criarTabela();
+        for(int i = 0; i < numeroLinhas; i++){
+            for(int j = 1; j < numeroColunas; j++){
+                tabela_esperados.setValueAt(tabela_principal.calcularEsperado(i, j - 1), i, j); 
+            }
+        }
+        
+    }    
+    
+    private Tabela criarTabela(){
         String[] nomes_novo = new String[numeroColunas + 1];
         nomes_novo[0] = "";
         for(int i = 1; i < nomes_novo.length; i++){
-            nomes_novo[i] = nomesColunas[i - 1];
+            nomes_novo[i] = nomeColunas[i - 1];
         }
-        Tabela tabela = new Tabela(numeroLinhas, numeroColunas, nomesLinhas, nomes_novo);
+        Tabela tabela = new Tabela(numeroLinhas, numeroColunas, nomeLinhas, nomes_novo);
         
         return tabela;
     }
