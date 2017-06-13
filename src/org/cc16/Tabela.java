@@ -35,13 +35,15 @@ public class Tabela extends JTable   {
     		this.setValueAt(nomeLinhas[i], i, 0);
     	}
         iniciaDados();
-        editarSomatorio = new AtualizarSomatorioAction();
+        editarSomatorio = new AtualizaDadosAction();
         this.celulaListener = new TableCellListener(this, editarSomatorio);
     }
     
     public double calcularEsperado(int linha, int coluna){
-        return (somatorio_linhas.consultaIndice(linha).getValor()
-                 + somatorio_colunas.consultaIndice(coluna).getValor()) / somatorio_total;
+        double valor = ((double) somatorio_linhas.consultaIndice(linha).getValor()
+                         * (double) somatorio_colunas.consultaIndice(coluna).getValor()) / (double) somatorio_total;
+        System.out.println(valor);
+        return valor;
     }
   
     public ListaEncadeada getLinha(int indice){

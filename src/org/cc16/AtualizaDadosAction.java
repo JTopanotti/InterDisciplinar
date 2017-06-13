@@ -17,7 +17,7 @@ import java.beans.PropertyChangeListener;
 import javax.swing.Action;
 import javax.swing.JTable;
 
-public class AtualizarSomatorioAction implements Action {
+public class AtualizaDadosAction implements Action {
 
     @Override
     public Object getValue(String key) {
@@ -62,8 +62,6 @@ public class AtualizarSomatorioAction implements Action {
         tabela.setSomatorioColuna(coluna, valorAnt, valorPost);
         tabela.setSomatorioTotal(valorAnt, valorPost);
         tabela.setValorNo(valorPost, linha, coluna);
-        tabela.getLinha(0).consultarLista();
-        tabela.getLinha(1).consultarLista();
     }
     
 }

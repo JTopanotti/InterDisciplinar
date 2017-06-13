@@ -3,15 +3,8 @@
     <type>org.netbeans.modules.java.j2seproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
-<<<<<<< HEAD
-            <name>JavaProject1</name>
+            <name>JavaProject2</name>
             <source-roots/>
-=======
-            <name>InterDisciplinarGit</name>
-            <source-roots>
-                <root id="src.src.dir"/>
-            </source-roots>
->>>>>>> eac48a937bc7c34a8debb1b6de8b3da28ed85106
             <test-roots/>
         </data>
     </configuration>

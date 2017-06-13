@@ -1,11 +1,9 @@
 .idea/
 *.iml
 bin/
-<<<<<<< HEAD
-
-/nbproject/private/
-=======
-out/
-/nbproject/private/
+*.xml
+/out/
+/nbproject/
 /build/
+*.mf
 >>>>>>> eac48a937bc7c34a8debb1b6de8b3da28ed85106
