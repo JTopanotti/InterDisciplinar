@@ -14,6 +14,8 @@ import javax.swing.table.DefaultTableModel;
 public class Tabela extends JTable   {
     
     private static final long serialVersionUID = 1L;
+    private int numLinhas;
+    private int numColunas;
     private ListaEncadeada[] dados;
     private ListaEncadeada somatorio_colunas;
     private ListaEncadeada somatorio_linhas;
@@ -22,15 +24,17 @@ public class Tabela extends JTable   {
     private TableCellListener celulaListener;
     private Action editarSomatorio;
     
-    public Tabela(int numlinhas, int numcolunas, String[] nomeLinhas, String[] nomeColunas){    	
+    public Tabela(int numLinhas, int numColunas, String[] nomeLinhas, String[] nomeColunas){    	
     	//super(new ModeloTabela(nomeColunas, new Object[numlinhas][numcolunas]));
-        super(new DefaultTableModel(nomeColunas, numlinhas));
+        super(new DefaultTableModel(nomeColunas, numLinhas));
+        this.numLinhas = numLinhas;
+        this.numColunas = numColunas;
     	JScrollPane tabela_scroll = new JScrollPane(this);
     	this.titulo_linhas = nomeLinhas;
-    	for(int i = 0; i < numlinhas; i++){
+    	for(int i = 0; i < numLinhas; i++){
     		this.setValueAt(nomeLinhas[i], i, 0);
     	}
-        
+        iniciaSomatorios();
         editarSomatorio = new AtualizarSomatorioAction();
         this.celulaListener = new TableCellListener(this, editarSomatorio);
     }
@@ -39,6 +43,22 @@ public class Tabela extends JTable   {
   
     public ListaEncadeada getLinha(int indice){
     	return dados[indice];
+    }
+    
+    private void iniciaSomatorios(){
+        for(int i = 0; i < numLinhas; i++){
+            if(somatorio_linhas == null)
+                somatorio_linhas = new ListaEncadeada(0);
+            else
+                somatorio_linhas.criarNo(0);
+        }
+        for(int i = 0; i < numColunas; i++){
+            if(somatorio_colunas == null)
+                somatorio_colunas = new ListaEncadeada(0);
+            else
+                somatorio_colunas.criarNo(0);
+        }
+        somatorio_total = 0;
     }
     
     public void gravarDados(Integer[][] info){

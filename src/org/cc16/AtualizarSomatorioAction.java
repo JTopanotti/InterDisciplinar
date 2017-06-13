@@ -15,6 +15,7 @@ package org.cc16;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 import javax.swing.Action;
+import javax.swing.JTable;
 
 public class AtualizarSomatorioAction implements Action {
 
@@ -51,16 +52,15 @@ public class AtualizarSomatorioAction implements Action {
     @Override
     public void actionPerformed(ActionEvent e) {
         int linha = ((TableCellListener)e.getSource()).getRow();
-        int coluna = ((TableCellListener)e.getSource()).getColumn();
-        int valorAnt = (int) ((TableCellListener)e.getSource()).getOldValue();
-        int valorPost = (int) ((TableCellListener)e.getSource()).getNewValue();
+        int coluna = ((TableCellListener)e.getSource()).getColumn() - 1;
+        int valorAnt = ((TableCellListener)e.getSource()).getOldValue() == null ? 0 : Integer.parseInt(((TableCellListener)e.getSource()).getOldValue().toString());
+        int valorPost = ((TableCellListener)e.getSource()).getNewValue() == null ? 0 : Integer.parseInt(((TableCellListener)e.getSource()).getNewValue().toString());
         
-        ((Tabela)e.getSource()).setSomatorioLinha(linha, valorAnt, valorPost);
-        ((Tabela)e.getSource()).setSomatorioColuna(coluna, valorAnt, valorPost);
-        ((Tabela)e.getSource()).setSomatorioTotal(valorAnt, valorPost);
+        Tabela tabela = (Tabela)((TableCellListener)e.getSource()).getTable();
         
-        
-        
+        tabela.setSomatorioLinha(linha, valorAnt, valorPost);
+        tabela.setSomatorioColuna(coluna, valorAnt, valorPost);
+        tabela.setSomatorioTotal(valorAnt, valorPost);
     }
     
 }
