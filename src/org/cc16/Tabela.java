@@ -5,6 +5,8 @@ package org.cc16;
  * Created by jonathan on 5/24/17.
  */
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -39,11 +41,14 @@ public class Tabela extends JTable   {
         this.celulaListener = new TableCellListener(this, editarSomatorio);
     }
     
-    public double calcularEsperado(int linha, int coluna){
-        double valor = ((double) somatorio_linhas.consultaIndice(linha).getValor()
-                         * (double) somatorio_colunas.consultaIndice(coluna).getValor()) / (double) somatorio_total;
+    public BigDecimal calcularEsperado(int linha, int coluna){
+        float valor = ( somatorio_linhas.consultaIndice(linha).getValor()
+                         *  somatorio_colunas.consultaIndice(coluna).getValor()) / (float) somatorio_total;
+        BigDecimal bd = new BigDecimal(((Float)valor).toString());
+        bd = bd.setScale(2, BigDecimal.ROUND_CEILING);
         System.out.println(valor);
-        return valor;
+        System.out.println(bd.toString());
+        return bd;
     }
   
     public ListaEncadeada getLinha(int indice){
@@ -52,6 +57,16 @@ public class Tabela extends JTable   {
     
     public void setValorNo(int valor, int linha, int coluna){
         dados[linha].consultaIndice(coluna).setValor(valor);
+    }
+    
+    public long[][] getDados(){
+        long[][] m_dados = new long[dados.length][dados[0].getQuantidadeNos()];
+        for (int i = 0; i < dados.length; i++) {
+            for(int j = 0; j < dados[i].getQuantidadeNos(); j++){
+                m_dados[i][j] = dados[i].consultaIndice(j).getValor();
+            }
+        }
+        return m_dados;
     }
     
     private void iniciaDados(){
@@ -106,13 +121,13 @@ public class Tabela extends JTable   {
     }
     
     public void setSomatorioColuna(int indice, int valorAnt, int valorPost){
-        int valor_no = somatorio_colunas.consultaIndice(indice).getValor();
+        long valor_no = somatorio_colunas.consultaIndice(indice).getValor();
         valor_no = (valor_no - valorAnt) + valorPost;
         somatorio_colunas.consultaIndice(indice).setValor(valor_no);
     }
 
     public void setSomatorioLinha(int indice, int valorAnt, int valorPost){
-        int valor_no = somatorio_linhas.consultaIndice(indice).getValor();
+        long valor_no = somatorio_linhas.consultaIndice(indice).getValor();
         valor_no = (valor_no - valorAnt) + valorPost;
         somatorio_linhas.consultaIndice(indice).setValor(valor_no);
     }

@@ -2,20 +2,20 @@ package org.cc16;
 
 
 public class ListaEncadeada {
-	private int valor;
+	private long valor;
 	private ListaEncadeada prox = null;
 	private ListaEncadeada ant = null;
-	private int indice = 0;
-	private int sum = 0;
+	private long indice = 0;
+	private long sum = 0;
 
-	public int getValor(){
+	public long getValor(){
 		return valor;
 	}
-	public void setValor(int valor){
+	public void setValor(long valor){
             this.valor = valor;
         }
 
-	public ListaEncadeada consultaIndice(int ind){
+	public ListaEncadeada consultaIndice(long ind){
 		ListaEncadeada lista = this;
 		while(lista != null ){
 			if(lista.indice == ind)
@@ -34,8 +34,7 @@ public class ListaEncadeada {
         }
         return n;
     }
-
-
+        
 	public void consultarLista(){
 		ListaEncadeada lista = this;
 		while(lista != null){
@@ -52,11 +51,11 @@ public class ListaEncadeada {
 		return lista;
 	}
 
-	public int getSomatorio(){
+	public long getSomatorio(){
 		return this.getUltimoNo().sum;
 	}
 	
-	public void criarNo(int valor){
+	public void criarNo(long valor){
 		ListaEncadeada lista = this;
 		while(lista.prox != null){
 			lista = lista.prox;
@@ -67,7 +66,7 @@ public class ListaEncadeada {
 		lista.prox.sum += lista.sum;
 	}
 	
-	public ListaEncadeada(int valor){ 		
+	public ListaEncadeada(long valor){ 		
 		this.valor = valor;
 		this.prox = null;
 		this.ant = null;
