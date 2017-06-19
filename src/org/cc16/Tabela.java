@@ -26,8 +26,7 @@ public class Tabela extends JTable   {
     private TableCellListener celulaListener;
     private Action editarSomatorio;
     
-    public Tabela(int numLinhas, int numColunas, String[] nomeLinhas, String[] nomeColunas){    	
-    	//super(new ModeloTabela(nomeColunas, new Object[numlinhas][numcolunas]));
+    public Tabela(int numLinhas, int numColunas, String[] nomeLinhas, String[] nomeColunas){    	    	
         super(new DefaultTableModel(nomeColunas, numLinhas));
         this.numLinhas = numLinhas;
         this.numColunas = numColunas;
@@ -39,7 +38,10 @@ public class Tabela extends JTable   {
         iniciaDados();
         editarSomatorio = new AtualizaDadosAction();
         this.celulaListener = new TableCellListener(this, editarSomatorio);
+        this.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
     }
+    
+    
     
     public BigDecimal calcularEsperado(int linha, int coluna){
         float valor = ( somatorio_linhas.consultaIndice(linha).getValor()
@@ -48,7 +50,11 @@ public class Tabela extends JTable   {
         bd = bd.setScale(2, BigDecimal.ROUND_CEILING);
         System.out.println(valor);
         System.out.println(bd.toString());
-        return bd;
+        return bd;  
+    }
+    
+    public void finalizarEdicao(){
+      //      this.celulaListener.processEditingStopped();
     }
   
     public ListaEncadeada getLinha(int indice){

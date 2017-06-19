@@ -201,15 +201,15 @@ public class FInformaLinhaColuna extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGerarTabelaActionPerformed
 
     private void tbLinhasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbLinhasKeyTyped
-        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-            proximaLinha(tbLinhas);
-        } 
+//        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+//            proximaLinha(tbLinhas);
+//        } 
     }//GEN-LAST:event_tbLinhasKeyTyped
 
     private void tbColunasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbColunasKeyTyped
-        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-            proximaLinha(tbColunas);
-        }
+//        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+//            proximaLinha(tbColunas);
+//        }
     }//GEN-LAST:event_tbColunasKeyTyped
 
     private void btnGerarTabelaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnGerarTabelaKeyTyped
