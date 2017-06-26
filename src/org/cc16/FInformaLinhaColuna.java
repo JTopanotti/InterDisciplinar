@@ -151,7 +151,7 @@ public class FInformaLinhaColuna extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(103, 103, 103)
                         .addComponent(jLabel4)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 19, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -159,7 +159,7 @@ public class FInformaLinhaColuna extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addGap(0, 184, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,7 +167,7 @@ public class FInformaLinhaColuna extends javax.swing.JFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnGerarTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnGerarTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -187,9 +187,9 @@ public class FInformaLinhaColuna extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(3, 3, 3)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(17, 17, 17)
+                .addGap(18, 18, 18)
                 .addComponent(btnGerarTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(11, 11, 11))
         );
 
         pack();
@@ -201,15 +201,11 @@ public class FInformaLinhaColuna extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGerarTabelaActionPerformed
 
     private void tbLinhasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbLinhasKeyTyped
-//        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-//            proximaLinha(tbLinhas);
-//        } 
+
     }//GEN-LAST:event_tbLinhasKeyTyped
 
     private void tbColunasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbColunasKeyTyped
-//        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-//            proximaLinha(tbColunas);
-//        }
+
     }//GEN-LAST:event_tbColunasKeyTyped
 
     private void btnGerarTabelaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnGerarTabelaKeyTyped
@@ -218,14 +214,7 @@ public class FInformaLinhaColuna extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGerarTabelaKeyTyped
 
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FInformaLinhaColuna().setVisible(true);
-            }
-        });
-    }
+    
     
     public void informaLinhasColunas(int linhas, int colunas){
         this.numeroLinhas = linhas;

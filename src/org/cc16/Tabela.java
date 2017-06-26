@@ -53,9 +53,6 @@ public class Tabela extends JTable   {
         return bd;  
     }
     
-    public void finalizarEdicao(){
-      //      this.celulaListener.processEditingStopped();
-    }
   
     public ListaEncadeada getLinha(int indice){
     	return dados[indice];
@@ -96,22 +93,6 @@ public class Tabela extends JTable   {
                 somatorio_colunas.criarNo(0);
         }
         somatorio_total = 0;
-    }
-    
-    public void gravarDados(Integer[][] info){
-    	this.dados = new ListaEncadeada[info.length];
-    	for(int i = 0; i < info.length ; i++){
-    		for(int j = 1; j < info[i].length; j++){
-    			if( j == 1 )
-    				dados[i] = new ListaEncadeada(info[i][j]);
-    			else
-    				dados[i].criarNo(info[i][j]);
-    			
-    		}
-    	}
-    	for(int i = 0; i < dados.length; i++){
-    		dados[i].consultarLista();
-    	}
     }
 
     public ListaEncadeada getSomatorioColunas(){
